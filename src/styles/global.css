@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-jet-bg text-slate-200 antialiased font-body;
+  }
+  a {
+    @apply text-jet-cyan hover:text-jet-neon transition-colors;
+  }
+  .prose-page p {
+    @apply text-slate-300 leading-relaxed mb-4 text-[15px] sm:text-base;
+  }
+  .prose-page h2 {
+    @apply text-white text-2xl font-semibold mt-12 mb-4 font-display tracking-tight;
+  }
+  .prose-page h3 {
+    @apply text-lg text-violet-200 font-semibold mt-8 mb-3;
+  }
+}

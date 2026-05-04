@@ -1,0 +1,41 @@
+---
+import { AFFILIATE_URL } from "@/lib/constants";
+import type { Locale } from "@/lib/constants";
+
+interface Props {
+  locale: Locale;
+  variant?: "bar" | "card";
+}
+const { locale, variant = "bar" } = Astro.props;
+const label = locale === "ru" ? "Играть" : locale === "kz" ? "Ойнау" : "Play";
+---
+
+<div
+  class:list={[
+    "my-10 rounded-xl border border-jet-border/80 p-4 sm:p-5",
+    variant === "bar"
+      ? "bg-gradient-to-r from-jet-card/90 to-violet-950/40"
+      : "bg-jet-card",
+  ]}
+>
+  <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+    <div>
+      <p class="text-xs uppercase tracking-widest text-jet-cyan/90 mb-1">X Jet</p>
+      <p class="text-white font-medium">
+        {locale === "ru"
+          ? "Перейти к игре и бонусам партнёрской площадки"
+          : locale === "kz"
+            ? "Серіктес алаңындағы ойынға өту"
+            : "Continue to the partner lobby & offers"}
+      </p>
+    </div>
+    <a
+      href={AFFILIATE_URL}
+      target="_blank"
+      rel="noopener noreferrer sponsored"
+      class="inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-violet-600 to-cyan-500 px-6 py-3 text-white font-semibold shadow-neon hover:opacity-95 transition-opacity whitespace-nowrap"
+    >
+      {label}
+    </a>
+  </div>
+</div>

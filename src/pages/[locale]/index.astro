@@ -1,0 +1,76 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import HeroJet from "@/components/HeroJet.astro";
+import CtaInline from "@/components/CtaInline.astro";
+import SimilarQueries from "@/components/SimilarQueries.astro";
+import InternalLinks from "@/components/InternalLinks.astro";
+import { LOCALES, type Locale } from "@/lib/constants";
+import { generateArticle } from "@/lib/content-generator";
+import { buildSeo } from "@/lib/seo";
+import { pageH1, pageSubtitle } from "@/lib/h1";
+import { buildInternalLinks } from "@/lib/links";
+import { buildArticleJsonLd, buildFaqJsonLd } from "@/lib/schema";
+
+export function getStaticPaths() {
+  return LOCALES.map((locale) => ({ params: { locale } }));
+}
+
+const locale = Astro.params.locale as Locale;
+const slugPath = "";
+const cluster = "home";
+const seo = buildSeo(locale, cluster, slugPath);
+const article = generateArticle(locale, cluster, slugPath);
+const internal = buildInternalLinks(locale, slugPath);
+const faqLd = buildFaqJsonLd(seo.canonical, article.faq);
+const articleLd = buildArticleJsonLd({
+  url: seo.canonical,
+  headline: pageH1(locale, cluster, slugPath),
+  description: seo.description,
+  locale,
+  dateModified: "2026-05-04",
+  wordCount: article.wordCount,
+});
+---
+
+<BaseLayout
+  title={seo.title}
+  description={seo.description}
+  canonical={seo.canonical}
+  locale={locale}
+  slugPath={slugPath}
+  faqLd={faqLd}
+  articleLd={articleLd}
+>
+  <HeroJet title={pageH1(locale, cluster, slugPath)} subtitle={pageSubtitle(locale, slugPath)} />
+  <CtaInline locale={locale} />
+  <article class="prose-page max-w-none">
+    {
+      article.sections.map((sec, i) => (
+        <>
+          <section class="scroll-mt-28" id={sec.id}>
+            <h2>{sec.title}</h2>
+            <div set:html={sec.html} />
+          </section>
+          {(i + 1) % 2 === 0 && <CtaInline locale={locale} />}
+        </>
+      ))
+    }
+    <section class="mt-16" aria-labelledby="faq-h">
+      <h2 id="faq-h" class="text-2xl font-semibold text-white mb-6 font-display">
+        {locale === "ru" ? "FAQ" : locale === "kz" ? "FAQ" : "FAQ"}
+      </h2>
+      <div class="space-y-4">
+        {
+          article.faq.map((item) => (
+            <div class="rounded-xl border border-jet-border bg-jet-card/50 p-4">
+              <h3 class="text-lg font-semibold text-violet-200 mb-2">{item.question}</h3>
+              <p class="text-slate-300 leading-relaxed">{item.answer}</p>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+  </article>
+  <SimilarQueries locale={locale} items={article.similarQueries} />
+  <InternalLinks locale={locale} links={internal} />
+</BaseLayout>

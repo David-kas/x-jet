@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://x-jet-game.vercel.app/sitemap-index.xml

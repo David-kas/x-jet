@@ -1,0 +1,28 @@
+---
+import { AFFILIATE_URL } from "@/lib/constants";
+import type { Locale } from "@/lib/constants";
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const label = locale === "ru" ? "Играть" : locale === "kz" ? "Ойнау" : "Play";
+---
+
+<a
+  href={AFFILIATE_URL}
+  target="_blank"
+  rel="noopener noreferrer sponsored"
+  class:list={[
+    "group fixed bottom-0 inset-x-0 z-50 flex items-center justify-center sm:hidden",
+    "bg-gradient-to-r from-violet-700 via-fuchsia-600 to-cyan-500",
+    "py-3.5 px-4 shadow-[0_-8px_30px_rgba(168,85,247,0.45)] border-t border-white/10",
+  ]}
+>
+  <span
+    class="text-white font-semibold tracking-wide text-sm uppercase group-active:scale-[0.98] transition-transform"
+  >
+    {label}
+  </span>
+  <span class="ml-2 text-white/80 text-xs">X Jet →</span>
+</a>

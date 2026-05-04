@@ -1,0 +1,62 @@
+---
+import "../styles/global.css";
+import { SITE_URL } from "@/lib/constants";
+import { LOCALES, type Locale } from "@/lib/constants";
+import StickyCta from "@/components/StickyCta.astro";
+import SiteHeader from "@/components/SiteHeader.astro";
+import SiteFooter from "@/components/SiteFooter.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  canonical: string;
+  locale: Locale;
+  slugPath: string;
+  faqLd: Record<string, unknown>;
+  articleLd: Record<string, unknown>;
+}
+const { title, description, canonical, locale, slugPath, faqLd, articleLd } = Astro.props;
+const htmlLang = locale === "kz" ? "kk" : locale;
+const pathSuffix = slugPath === "" ? "" : `${slugPath}/`;
+const alternates = LOCALES.map((loc) => ({
+  hreflang: loc === "kz" ? "kk" : loc,
+  href: `${SITE_URL}/${loc}/${pathSuffix}`,
+}));
+---
+
+<!doctype html>
+<html lang={htmlLang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {
+      alternates.map((a) => (
+        <link rel="alternate" hreflang={a.hreflang} href={a.href} />
+      ))
+    }
+    <link rel="alternate" hreflang="x-default" href={`${SITE_URL}/ru/${pathSuffix}`} />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content={locale === "kz" ? "kk_KZ" : locale === "ru" ? "ru_RU" : "en_US"} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="theme-color" content="#0a0612" />
+    <script type="application/ld+json" set:html={JSON.stringify(faqLd)} />
+    <script type="application/ld+json" set:html={JSON.stringify(articleLd)} />
+  </head>
+  <body class="min-h-screen pb-20 sm:pb-0">
+    <SiteHeader locale={locale} slugPath={slugPath} />
+    <main class="mx-auto max-w-6xl px-4 py-8 sm:py-12">
+      <slot />
+    </main>
+    <SiteFooter locale={locale} />
+    <StickyCta locale={locale} />
+  </body>
+</html>

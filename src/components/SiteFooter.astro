@@ -1,0 +1,51 @@
+---
+import type { Locale } from "@/lib/constants";
+import { hrefLocale } from "@/lib/links";
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const t =
+  locale === "ru"
+    ? {
+        gamble: "Играйте ответственно. Азартные игры могут вызывать зависимость.",
+        privacy: "Политика конфиденциальности",
+        terms: "Условия",
+        age: "18+",
+        legal:
+          "x-jet-game.vercel.app — информационный ресурс о crash game X Jet. Ссылки могут вести на партнёрские предложения. Не является офертой и не гарантирует выигрыш.",
+      }
+    : locale === "en"
+      ? {
+          gamble: "Gamble responsibly. Gambling can be addictive.",
+          privacy: "Privacy Policy",
+          terms: "Terms",
+          age: "18+",
+          legal:
+            "x-jet-game.vercel.app is an editorial site about the X Jet crash game. Links may include affiliate destinations. Not an offer and no winnings are guaranteed.",
+        }
+      : {
+          gamble: "Жауапты ойнаңыз. Тәуелділік қаупі бар.",
+          privacy: "Құпиялылық",
+          terms: "Шарттар",
+          age: "18+",
+          legal:
+            "x-jet-game.vercel.app — X Jet crash ойыны туралы ақпараттық сайт. Сілтемелер серіктес бағыттарға апаруы мүмкін. Ұтыс кепілденбейді.",
+        };
+---
+
+<footer class="mt-20 border-t border-jet-border bg-jet-surface/40">
+  <div class="mx-auto max-w-6xl px-4 py-10 text-sm text-slate-500 space-y-4">
+    <div class="flex flex-wrap gap-x-6 gap-y-2">
+      <span class="text-violet-300 font-semibold">{t.age}</span>
+      <span>{t.gamble}</span>
+    </div>
+    <div class="flex flex-wrap gap-4">
+      <a href={hrefLocale(locale, "privacy")} class="text-slate-400 hover:text-jet-cyan">{t.privacy}</a>
+      <a href={hrefLocale(locale, "terms")} class="text-slate-400 hover:text-jet-cyan">{t.terms}</a>
+      <a href={hrefLocale(locale, "faq")} class="text-slate-400 hover:text-jet-cyan">FAQ</a>
+    </div>
+    <p class="text-xs text-slate-600 max-w-3xl">{t.legal}</p>
+  </div>
+</footer>

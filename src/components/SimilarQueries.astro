@@ -1,0 +1,28 @@
+---
+import type { Locale } from "@/lib/constants";
+
+interface Props {
+  locale: Locale;
+  items: string[];
+}
+const { locale, items } = Astro.props;
+const title =
+  locale === "ru" ? "Похожие запросы" : locale === "kz" ? "Ұқсас сұраулар" : "Related searches";
+---
+
+<section class="mt-14 rounded-2xl border border-jet-border bg-jet-card/60 p-6" aria-labelledby="sq-head">
+  <h2 id="sq-head" class="text-xl font-semibold text-white mb-4 font-display">
+    {title}
+  </h2>
+  <ul class="flex flex-wrap gap-2">
+    {
+      items.map((q) => (
+        <li>
+          <span class="inline-block rounded-full border border-jet-border bg-jet-surface px-3 py-1.5 text-sm text-slate-300">
+            {q}
+          </span>
+        </li>
+      ))
+    }
+  </ul>
+</section>

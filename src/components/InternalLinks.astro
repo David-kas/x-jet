@@ -1,0 +1,36 @@
+---
+import type { Locale } from "@/lib/constants";
+import type { NavLink } from "@/lib/links";
+
+interface Props {
+  locale: Locale;
+  links: NavLink[];
+}
+const { locale, links } = Astro.props;
+const title =
+  locale === "ru"
+    ? "Внутренняя перелинковка"
+    : locale === "kz"
+      ? "Ішкі сілтемелер"
+      : "Internal links";
+---
+
+<section class="mt-10 rounded-2xl border border-jet-border/80 bg-jet-surface/50 p-6" aria-labelledby="il-head">
+  <h2 id="il-head" class="text-lg font-semibold text-white mb-3 font-display">
+    {title}
+  </h2>
+  <ul class="grid gap-2 sm:grid-cols-2">
+    {
+      links.map((l) => (
+        <li>
+          <a
+            href={l.href}
+            class="block rounded-lg border border-transparent px-3 py-2 hover:border-jet-border hover:bg-jet-card text-slate-300 hover:text-jet-cyan"
+          >
+            → {l.label}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</section>
