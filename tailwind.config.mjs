@@ -5,13 +5,15 @@ export default {
     extend: {
       colors: {
         jet: {
-          bg: "#0a0612",
-          surface: "#120c1f",
-          card: "#1a1229",
-          border: "#2d1f45",
-          neon: "#a855f7",
-          cyan: "#22d3ee",
-          glow: "#6366f1",
+          bg: "#0d0820",
+          surface: "#151033",
+          card: "#1d1546",
+          border: "#382766",
+          neon: "#9c4dff",
+          cyan: "#8b7cff",
+          accent: "#cf55ff",
+          gold: "#f4a640",
+          glow: "#6d5dfc",
         },
       },
       fontFamily: {
@@ -19,12 +21,12 @@ export default {
         body: ["'Inter', system-ui, sans-serif"],
       },
       boxShadow: {
-        neon: "0 0 24px rgba(168, 85, 247, 0.35)",
-        cyan: "0 0 20px rgba(34, 211, 238, 0.25)",
+        neon: "0 0 28px rgba(156, 77, 255, 0.42)",
+        cyan: "0 0 22px rgba(139, 124, 255, 0.30)",
       },
       backgroundImage: {
         "grid-fade":
-          "linear-gradient(to bottom, transparent, #0a0612), linear-gradient(90deg, rgba(99,102,241,0.06) 1px, transparent 1px), linear-gradient(rgba(99,102,241,0.06) 1px, transparent 1px)",
+          "linear-gradient(to bottom, transparent, #0d0820), linear-gradient(90deg, rgba(139,124,255,0.07) 1px, transparent 1px), linear-gradient(rgba(139,124,255,0.07) 1px, transparent 1px)",
       },
     },
   },
