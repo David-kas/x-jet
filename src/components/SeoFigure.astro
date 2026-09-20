@@ -1,0 +1,29 @@
+---
+import type { SeoImage } from "@/data/seo-images";
+
+interface Props {
+  image?: SeoImage;
+  eager?: boolean;
+}
+const { image, eager = false } = Astro.props;
+---
+
+{
+  image && (
+    <figure class="my-10 overflow-hidden rounded-2xl border border-jet-border bg-jet-card/60 shadow-neon">
+      <img
+        src={image.src}
+        alt={image.alt}
+        title={image.title}
+        width={image.width}
+        height={image.height}
+        loading={eager ? "eager" : "lazy"}
+        decoding="async"
+        class="block h-auto w-full"
+      />
+      <figcaption class="border-t border-jet-border/70 px-4 py-3 text-sm leading-relaxed text-slate-400 sm:px-5">
+        {image.caption}
+      </figcaption>
+    </figure>
+  )
+}
