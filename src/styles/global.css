@@ -22,3 +22,10 @@
     @apply text-lg text-violet-200 font-semibold mt-8 mb-3;
   }
 }
+
+
+@layer components {
+  .prose-page strong { @apply text-white font-semibold; }
+  .prose-page section { @apply relative; }
+  .prose-page h2::before { content: "✦"; @apply mr-2 text-jet-accent text-base align-middle; }
+}
