@@ -10,7 +10,7 @@ import { generateArticle } from "@/lib/content-generator";
 import { buildSeo } from "@/lib/seo";
 import { pageH1, pageSubtitle } from "@/lib/h1";
 import { buildInternalLinks } from "@/lib/links";
-import { buildArticleJsonLd, buildFaqJsonLd } from "@/lib/schema";
+import { buildArticleJsonLd, buildFaqJsonLd, buildPageGraphJsonLd } from "@/lib/schema";
 
 export function getStaticPaths() {
   return PAGE_REGISTRY.flatMap((def: PageDef) =>
