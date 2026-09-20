@@ -4,13 +4,15 @@ import HeroJet from "@/components/HeroJet.astro";
 import CtaInline from "@/components/CtaInline.astro";
 import SimilarQueries from "@/components/SimilarQueries.astro";
 import InternalLinks from "@/components/InternalLinks.astro";
+import SeoFigure from "@/components/SeoFigure.astro";
 import { LOCALES, type Locale } from "@/lib/constants";
 import { generateArticle } from "@/lib/content-generator";
 import { buildSeo } from "@/lib/seo";
 import { pageH1, pageSubtitle } from "@/lib/h1";
 import { buildInternalLinks } from "@/lib/links";
-import { buildArticleJsonLd, buildFaqJsonLd } from "@/lib/schema";
+import { buildArticleJsonLd, buildFaqJsonLd, buildPageGraphJsonLd } from "@/lib/schema";
 import { luckyJetRuArticle } from "@/data/luckyjet-ru";
+import { luckyJetSeoImages } from "@/data/seo-images";
 
 export function getStaticPaths() {
   return LOCALES.map((locale) => ({ params: { locale } }));
