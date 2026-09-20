@@ -21,6 +21,7 @@ const slugPath = "";
 const cluster = "home";
 const seo = buildSeo(locale, cluster, slugPath);
 const article = generateArticle(locale, cluster, slugPath);
+const activeArticle = locale === "ru" ? luckyJetRuArticle : article;
 const internal = buildInternalLinks(locale, slugPath);
 const faqLd = buildFaqJsonLd(seo.canonical, activeArticle.faq);
 const articleLd = buildArticleJsonLd({
@@ -28,8 +29,8 @@ const articleLd = buildArticleJsonLd({
   headline: pageH1(locale, cluster, slugPath),
   description: seo.description,
   locale,
-  dateModified: "2026-05-04",
-  wordCount: article.wordCount,
+  dateModified: "2026-09-20",
+  wordCount: activeArticle.wordCount,
 });
 ---
 
