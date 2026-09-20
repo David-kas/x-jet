@@ -33,8 +33,15 @@ const articleLd = buildArticleJsonLd({
   headline: pageH1(locale, def.cluster, slugPath),
   description: seo.description,
   locale,
-  dateModified: "2026-05-04",
+  dateModified: "2026-09-20",
   wordCount: article.wordCount,
+});
+const pageGraphLd = buildPageGraphJsonLd({
+  url: seo.canonical,
+  title: seo.title,
+  description: seo.description,
+  locale,
+  slugPath,
 });
 ---
 
@@ -46,6 +53,7 @@ const articleLd = buildArticleJsonLd({
   slugPath={slugPath}
   faqLd={faqLd}
   articleLd={articleLd}
+  pageGraphLd={pageGraphLd}
 >
   <HeroJet title={pageH1(locale, def.cluster, slugPath)} subtitle={pageSubtitle(locale, slugPath)} />
   <CtaInline locale={locale} />
