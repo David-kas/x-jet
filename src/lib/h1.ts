@@ -4,7 +4,7 @@ import type { Locale } from "@/lib/constants";
 export function pageH1(locale: Locale, cluster: ContentCluster, slugPath: string): string {
   const path = slugPath.replaceAll("/", " · ");
   if (locale === "ru") {
-    if (slugPath === "") return "X Jet — краш‑игра: множитель, коэффициент и ответственная ставка";
+    if (slugPath === "") return "Лаки Джет (Lucky Jet) — 1win, Ракетка Тамаева и как найти официальный сайт";
     if (slugPath === "privacy") return "Политика конфиденциальности X Jet Game";
     if (slugPath === "terms") return "Условия использования X Jet Game";
     return `${path}: гид по X Jet, crash game и онлайн казино`;
@@ -23,7 +23,9 @@ export function pageH1(locale: Locale, cluster: ContentCluster, slugPath: string
 
 export function pageSubtitle(locale: Locale, slugPath: string): string {
   if (locale === "ru")
-    return `Материал для темы «${slugPath || "главная"}»: crash game, множитель, коэффициент, ставка, вывод денег и контекст онлайн казино — без обещаний гарантированного выигрыша. 18+`;
+    return slugPath === ""
+      ? "Большой обзор 2026: Lucky Jet / Лаки Джет, 1win, Ракетка Тамаева, официальный сайт, демо, скачать, сигналы, боты, стратегии и вывод денег. Независимый информационный сайт, не официальный сайт 1win. 18+"
+      : `Материал для темы «${slugPath}»: crash game, множитель, коэффициент, ставка, вывод денег и контекст онлайн казино — без обещаний гарантированного выигрыша. 18+`;
   if (locale === "en")
     return `Editorial guide for “${slugPath || "home"}”: crash game mechanics, multiplier, coefficient, bet sizing, withdrawals, licensed online casino notes. 18+ only.`;
   return `«${slugPath || "басты бет"}» тақырыбы: crash game, multiplier, coefficient, ставка, ақша шығару, онлайн казино контексті. 18+.`;
