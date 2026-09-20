@@ -8,7 +8,9 @@ interface Props {
   slugPath: string;
 }
 const { locale, slugPath } = Astro.props;
-const cta = locale === "ru" ? "Играть" : locale === "kz" ? "Ойнау" : "Play";
+const cta = locale === "ru" ? "Играть в Lucky Jet" : locale === "kz" ? "Ойнау" : "Play";
+const brand = locale === "ru" ? "Lucky Jet" : "X Jet";
+const badge = locale === "ru" ? "LJ" : "XJ";
 ---
 
 <header
@@ -18,9 +20,9 @@ const cta = locale === "ru" ? "Играть" : locale === "kz" ? "Ойнау" : 
     <a href={hrefLocale(locale, "")} class="flex items-center gap-2 text-white hover:text-jet-cyan">
       <span
         class="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-violet-600 to-cyan-500 font-display font-bold text-sm shadow-neon"
-        >XJ</span
+        >{badge}</span
       >
-      <span class="font-display font-semibold tracking-tight hidden sm:inline">X Jet</span>
+      <span class="font-display font-semibold tracking-tight hidden sm:inline">{brand}</span>
     </a>
     <nav class="hidden md:flex items-center gap-5 text-sm text-slate-400">
       <a href={hrefLocale(locale, "demo")} class="hover:text-white">Demo</a>
