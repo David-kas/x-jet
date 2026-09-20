@@ -14,6 +14,7 @@ interface Props {
   slugPath: string;
   faqLd: Record<string, unknown>;
   articleLd: Record<string, unknown>;
+  pageGraphLd: Record<string, unknown>;
 }
 const { title, description, canonical, locale, slugPath, faqLd, articleLd, pageGraphLd } = Astro.props;
 const htmlLang = locale === "kz" ? "kk" : locale;
