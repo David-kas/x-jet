@@ -36,7 +36,7 @@ export function buildArticleJsonLd(opts: {
     dateModified: opts.dateModified,
     author: {
       "@type": "Organization",
-      name: "X Jet Game",
+      name: "Lucky Jet / X Jet Guide",
       url: SITE_URL,
     },
     publisher: {

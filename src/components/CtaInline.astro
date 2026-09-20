@@ -7,7 +7,7 @@ interface Props {
   variant?: "bar" | "card";
 }
 const { locale, variant = "bar" } = Astro.props;
-const label = locale === "ru" ? "Играть" : locale === "kz" ? "Ойнау" : "Play";
+const label = locale === "ru" ? "Играть в Lucky Jet" : locale === "kz" ? "Ойнау" : "Play";
 ---
 
 <div
@@ -20,7 +20,7 @@ const label = locale === "ru" ? "Играть" : locale === "kz" ? "Ойнау" 
 >
   <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
     <div>
-      <p class="text-xs uppercase tracking-widest text-jet-cyan/90 mb-1">X Jet</p>
+      <p class="text-xs uppercase tracking-widest text-jet-cyan/90 mb-1">{locale === "ru" ? "Lucky Jet · 1win" : "X Jet"}</p>
       <p class="text-white font-medium">
         {locale === "ru"
           ? "Перейти к игре и бонусам партнёрской площадки"

@@ -22,3 +22,24 @@
     @apply text-lg text-violet-200 font-semibold mt-8 mb-3;
   }
 }
+
+
+@layer components {
+  .prose-page strong { @apply text-white font-semibold; }
+  .prose-page section { @apply relative; }
+  .prose-page h2::before { content: "✦"; @apply mr-2 text-jet-accent text-base align-middle; }
+}
+
+
+@layer base {
+  body {
+    background-image:
+      radial-gradient(circle at 18% 0%, rgba(156, 77, 255, 0.16), transparent 34%),
+      radial-gradient(circle at 82% 10%, rgba(109, 93, 252, 0.13), transparent 30%);
+    background-attachment: fixed;
+  }
+  ::selection {
+    background: rgba(156, 77, 255, 0.48);
+    color: #fff;
+  }
+}

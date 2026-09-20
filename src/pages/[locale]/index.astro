@@ -10,6 +10,7 @@ import { buildSeo } from "@/lib/seo";
 import { pageH1, pageSubtitle } from "@/lib/h1";
 import { buildInternalLinks } from "@/lib/links";
 import { buildArticleJsonLd, buildFaqJsonLd } from "@/lib/schema";
+import { luckyJetRuArticle } from "@/data/luckyjet-ru";
 
 export function getStaticPaths() {
   return LOCALES.map((locale) => ({ params: { locale } }));
@@ -20,15 +21,16 @@ const slugPath = "";
 const cluster = "home";
 const seo = buildSeo(locale, cluster, slugPath);
 const article = generateArticle(locale, cluster, slugPath);
+const activeArticle = locale === "ru" ? luckyJetRuArticle : article;
 const internal = buildInternalLinks(locale, slugPath);
-const faqLd = buildFaqJsonLd(seo.canonical, article.faq);
+const faqLd = buildFaqJsonLd(seo.canonical, activeArticle.faq);
 const articleLd = buildArticleJsonLd({
   url: seo.canonical,
   headline: pageH1(locale, cluster, slugPath),
   description: seo.description,
   locale,
-  dateModified: "2026-05-04",
-  wordCount: article.wordCount,
+  dateModified: "2026-09-20",
+  wordCount: activeArticle.wordCount,
 });
 ---
 
@@ -45,7 +47,7 @@ const articleLd = buildArticleJsonLd({
   <CtaInline locale={locale} />
   <article class="prose-page max-w-none">
     {
-      article.sections.map((sec, i) => (
+      activeArticle.sections.map((sec, i) => (
         <>
           <section class="scroll-mt-28" id={sec.id}>
             <h2>{sec.title}</h2>
@@ -61,7 +63,7 @@ const articleLd = buildArticleJsonLd({
       </h2>
       <div class="space-y-4">
         {
-          article.faq.map((item) => (
+          activeArticle.faq.map((item) => (
             <div class="rounded-xl border border-jet-border bg-jet-card/50 p-4">
               <h3 class="text-lg font-semibold text-violet-200 mb-2">{item.question}</h3>
               <p class="text-slate-300 leading-relaxed">{item.answer}</p>
@@ -71,6 +73,6 @@ const articleLd = buildArticleJsonLd({
       </div>
     </section>
   </article>
-  <SimilarQueries locale={locale} items={article.similarQueries} />
+  <SimilarQueries locale={locale} items={activeArticle.similarQueries} />
   <InternalLinks locale={locale} links={internal} />
 </BaseLayout>
